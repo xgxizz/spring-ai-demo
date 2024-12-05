@@ -1,0 +1,11 @@
+yesapi:
+  url: https://xxx
+  key: sk-xxx
+spring:
+  application:
+  name: spring-ai-demo
+  
+  ai:
+    openai:
+      api-key: ${yesapi.key}
+      base-url: ${yesapi.url}
