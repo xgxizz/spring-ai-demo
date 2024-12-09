@@ -162,4 +162,13 @@ public class AiController {
         ChatResponse response = chatModel.call(new Prompt(userMessage));
         return response.getResult().getOutput().getContent();
     }
+
+    @GetMapping(value = "/chat/func-call")
+    public String funcCall(@RequestParam(value = "message", defaultValue = "What's the weather like in San Francisco, Tokyo, and Paris?") String message) {
+        ChatResponse response = this.chatClient.prompt(message)
+                .functions("CurrentWeather") // Enable the function
+                .call().
+                chatResponse();
+        return response.getResult().getOutput().getContent();
+    }
 }
